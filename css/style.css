@@ -120,7 +120,9 @@ color: white;
 
     width:100%;
 
-    height:100vh;
+    min-height:100vh;
+
+    padding-top:140px;
 
     position:relative;
 
@@ -342,48 +344,53 @@ color: white;
 /* ================= SERVICE BOX ================= */
 
 .service-box{
-    background:rgba(255,255,255,0.06);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.08);
+    background:#ffffff;
     padding:50px 30px;
     text-align:center;
     border-radius:18px;
     transition:0.4s ease;
-    color:#fff;
-    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    position:relative;
+    overflow:hidden;
 }
 
-.service-box:hover{
-    transform:translateY(-12px);
-    background:#ff7a00;
-    color:#fff;
-}
-
-.service-box i{
-    font-size:48px;
-    margin-bottom:25px;
-    color:#ff7a00;
-    transition:0.4s;
-}
-
-.service-box:hover i{
-    color:#fff;
+.service-box i,
+.service-box h3,
+.service-box p{
+    position:relative;
+    z-index:2;
 }
 
 .service-box h3{
-    font-size:28px;
-    margin-bottom:15px;
-    font-weight:700;
+    color:#000;
 }
 
 .service-box p{
-    font-size:17px;
-    line-height:1.8;
-    color:#ddd;
+    color:#444;
+}
+/* glow border animation */
+.service-box::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border-radius:18px;
+    background:linear-gradient(45deg,#ff7a00,transparent,#ff7a00);
+    opacity:0;
+    transition:0.4s;
+    z-index:0;
 }
 
-.service-box:hover p{
-    color:#fff;
+.service-box:hover::before{
+    opacity:0.15;
+}
+
+/* hover effect */
+.service-box:hover{
+    transform:translateY(-15px) scale(1.05);
+    box-shadow:0 15px 40px rgba(255,122,0,0.25);
 }
 
 /* ================= COUNTER ================= */
@@ -579,11 +586,6 @@ footer{
 }
 
 @media(max-width:768px){
-
-    .header{
-        flex-direction:column;
-        padding:20px;
-    }
 
     .navbar ul{
         flex-direction:column;
@@ -1544,4 +1546,38 @@ margin:auto;
         height:300px;
     }
 
+}
+@media(max-width:768px){
+
+    .hero{
+        padding-top:180px;
+    }
+
+    .hero-content h1{
+        font-size:32px;
+        line-height:1.3;
+    }
+
+}
+@media(max-width:768px){
+    .header{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
+}
+@media(max-width:768px){
+    .service-box{
+        transform:none !important;
+    }
+
+    .service-box::before{
+        opacity:0.08;
+    }
+}
+.owner{
+    margin-top:10px;
+    font-size:15px;
+    color:#ff7a00;
+    font-weight:500;
 }
